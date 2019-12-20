@@ -2,4 +2,5 @@
 C Language Linux
 C アルゴリズム演算ライブラリ
 
-・String演算
+1.String演算
+ 　・回文
