@@ -1,28 +1,72 @@
 #include <stdio.h>
 
-double Sum(double x[], int length);
+int Input(double x[]);
+double Avg(double x[], int size);
+int Output(double avg);
 
-/* 平均を計算する関数 */
+/* 平均値計算 */
 int main(){
-    double x[] = {30,100.00,40,20.0,30.000};
+    int size;
+    double x[size];
     double avg;
-    int length = sizeof(x)/sizeof(double);
 
-    avg = Sum(x,length)/length;
+    size = Input(x);      
+    avg = Avg(x,size);
+    Output(avg);
 
-    printf("平　　均：%f\n",avg);
-
-    return avg;  
+    return 0;  
 }
 
-/* 合計を計算する関数 */
-double Sum(double x[], int length)
-{
+/* 入力関数 */
+int Input(double x[]){
+    int i;
+    int size;
+    printf("数値を個数入力してください＞");
+    //scanf("%d",&size);
+
+    while(1){
+        // 異常値対策
+        if(scanf("%d", &size) != 1){
+            printf("数字入れてください。\n");
+            scanf("%*s");
+            continue;
+        }
+
+        for(i = 0;i<=size-1;i++){            
+            printf("%d個目の数値を入力してください=",i+1);
+            while(1){              
+                if(scanf("%lf",&x[i]) != 1){
+                    printf("数字入れてください。\n");
+                    scanf("%*s");
+                    continue;
+                }
+                break;
+            }
+        }
+        break;
+    }
+
+    return size;
+}
+
+/* 計算する関数 */
+double Avg(double x[], int size){
 	int    i;
 	double s = 0.0;
+    double avg = 0.0;
 
-	for (i = 0; i < length; i++) {
+	for (i = 0; i < size; i++) {
 		s += x[i];
 	}
-	return s;
+
+    avg  = s/size;
+
+	return avg;
+}
+
+/* 出力する関数 */
+int Output(double avg){
+    printf("平均値：%f\n",avg);
+
+    return 0;
 }
